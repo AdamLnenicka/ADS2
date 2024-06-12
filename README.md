@@ -1,5 +1,32 @@
 # Zadání
-![Zadání projektu](zadani.png)
+Cílem projektu je vytvořit funkční aplikaci pro zpracování dat ze senzorů pro měření teploty.
+Data budou produkována do Kafka clusteru běžícího v Kubernetes a z něj čtena aplikací
+napsanou v libovolném programovacím jazyce, která poběží v Kubernetes také.
+Projekt se nebude odevzdávat, ale bude se prezentovat osobně.
+Požadavky:
+1. Spusťte lokální Kubernetes cluster na svém (jednom) stroji.
+2. Vytvořte v Kubernetes Kafka cluster se třemi brokery. Perzistenci dat v Kubernetes
+řešit nemusíte. Nápověda pokud použijete Docker image Kafky od Bitnami: parametr
+KAFKA_CFG_LISTENERS se vztahuje vždy k portům uvnitř kontejneru, takže i pokud
+definujete nějaké EXTERNAL rozhraní Kafky, tak port v tomto parametru uveďte stejně
+vnitřní.
+3. Vytvořte v Kafka clusteru topic "temperature" se čtyřmi partition a třemi replikami.
+4. Ověřte, že cluster funguje i při ztrátě (restart nebo dlouhodobé vypnutí) jednoho nebo
+dvou brokerů.
+5. Vytvořte v libovolném programovacím jazyce aplikaci “temperature_reader”, která:
+a. Bude konzumovat zprávy z Kafka clusteru z topicu “temperature”. Použité
+řešení musí zůstat funkční při výpadku libovolných brokerů Kafka clusteru.
+b. Formát zprávy si můžete zvolit vlastní, ale musí obsahovat minimálně textový
+identifikátor senzoru a také hodnotu naměřené teploty (ve °C, s přesností na
+desetiny a v rozsahu vhodném pro běžnou domácnost - mimo tento rozsah
+musí zprávy zahazovat).
+c. Bude číst pouze nejnovější zprávy z Kafky.
+d. Na výstupu bude vypisovat aplikace ke každé zprávě unikátní identifikátor
+instance aplikace a za ním obsah načtené zprávy.
+6. Zajistěte, aby aplikace temperature_reader běžela v Kubernetu ve dvou instancích.
+7. Zajistěte, aby parametr “topic” pro temperature_reader byl konfigurovatelný
+z Kubernetes.
+8. Vyzkoušejte rolling update aplikace temperature_reader.
 
 ## Kroky
 1. Spustit lokální Kubernetes cluster na svém (jednom) stroji.<br>
