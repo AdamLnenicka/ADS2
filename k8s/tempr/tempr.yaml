@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: tempr
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: tempr
+  template:
+    metadata:
+      labels:
+        app: tempr
+    spec:
+      containers:
+      - name: tempr
+        image: xlnenick/temperature_reader:latest
+        env:
+        - name: TOPIC
+          value: "temperature"
