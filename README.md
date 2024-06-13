@@ -28,7 +28,7 @@ instance aplikace a za ním obsah načtené zprávy.
 z Kubernetes.
 8. Vyzkoušejte rolling update aplikace temperature_reader.
 
-## Kroky
+## Řešení
 1. Spustit lokální Kubernetes cluster na svém (jednom) stroji.<br>
 
 Pomocí minikube
