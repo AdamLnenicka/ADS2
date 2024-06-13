@@ -137,6 +137,8 @@ kafka-topics.sh --bootstrap-server kafka:9092 --list
 kafka-console-producer.sh --bootstrap-server kafka:9092 --topic temperature
 ```
 
+Restart
+```cmd
 kubectl rollout restart deployment producer
 kubectl rollout restart deployment tempr
 ```
