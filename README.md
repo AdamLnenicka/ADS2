@@ -118,3 +118,37 @@ z Kubernetes.<br>
 ```cmd
 kubectl rollout restart deployment tempr
 ```
+
+Další příkazy pro hraní si s topicem v kafce:
+📝 Popis topicu:
+```cmd
+kafka-topics.sh --bootstrap-server kafka:9092 --describe --topic temperature
+```
+🗑️ Smazání topicu:
+```cmd
+kafka-topics.sh --bootstrap-server kafka:9092 --delete --topic temperature
+```
+📃 Listnutí všech topiců:
+```cmd
+kafka-topics.sh --bootstrap-server kafka:9092 --list
+```
+⚒ Producent pro topic:
+```cmd
+kafka-console-producer.sh --bootstrap-server kafka:9092 --topic temperature
+```
+pro úpravy
+
+```cmd
+docker build -t xlnenick/temperature_producer:latest -f path/to/Dockerfile_producer .
+docker push xlnenick/temperature_producer:latest
+
+docker build -t xlnenick/temperature_reader:latest -f path/to/Dockerfile_reader .
+docker push xlnenick/temperature_reader:latest
+
+kubectl apply -f path/to/producer.yaml
+kubectl apply -f path/to/tempr.yaml
+
+kubectl rollout restart deployment producer
+kubectl rollout restart deployment tempr
+```
+
