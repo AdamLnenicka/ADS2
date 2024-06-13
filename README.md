@@ -136,17 +136,6 @@ kafka-topics.sh --bootstrap-server kafka:9092 --list
 ```cmd
 kafka-console-producer.sh --bootstrap-server kafka:9092 --topic temperature
 ```
-pro úpravy
-
-```cmd
-docker build -t xlnenick/temperature_producer:latest -f path/to/Dockerfile_producer .
-docker push xlnenick/temperature_producer:latest
-
-docker build -t xlnenick/temperature_reader:latest -f path/to/Dockerfile_reader .
-docker push xlnenick/temperature_reader:latest
-
-kubectl apply -f path/to/producer.yaml
-kubectl apply -f path/to/tempr.yaml
 
 kubectl rollout restart deployment producer
 kubectl rollout restart deployment tempr
