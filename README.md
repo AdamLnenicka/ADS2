@@ -118,8 +118,8 @@ z Kubernetes.<br>
 ```cmd
 kubectl rollout restart deployment tempr
 ```
+V kafkce:
 
-Další příkazy pro hraní si s topicem v kafce:
 📝 Popis topicu:
 ```cmd
 kafka-topics.sh --bootstrap-server kafka:9092 --describe --topic temperature
